@@ -1,0 +1,7 @@
+Unity Asset Store:
+Clean Settings UI
+
+3rd Party:
+Firebase Authentication
+Firebase Database
+Firebase google-services.json
