@@ -44,6 +44,14 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Clears the text in the personal log, but does not save it.
+    /// </summary>
+    public void ClearPersonalLog()
+    {
+        PlayerPrefsControl.Instance.personalLog.text = "";
+    }
+
+    /// <summary>
     /// Turn off all UI related to the login and register.
     /// </summary>
     public void ClearLoginScreen()
@@ -104,6 +112,7 @@ public class UIManager : MonoBehaviour
     public void PersonalLogScreen()
     {
         ClearDashboardScreen();
+        PlayerPrefsControl.Instance.LoadPersonalLog();
         userLog.SetActive(true);
     }
 

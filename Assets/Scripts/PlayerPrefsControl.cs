@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerPrefsControl : MonoBehaviour
 {
+    public TMP_InputField personalLog;
+
     private static PlayerPrefsControl instance;
 
     public static PlayerPrefsControl Instance
@@ -24,6 +25,19 @@ public class PlayerPrefsControl : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    /// <summary>
+    /// Saves the text currently in the personal log.
+    /// </summary>
+    public void SavePersonalLog()
+    {
+        PlayerPrefs.SetString("SavedPersonalLog", personalLog.text);
+    }
+
+    public void LoadPersonalLog()
+    {
+        personalLog.text = PlayerPrefs.GetString("SavedPersonalLog", "");
     }
 
     /// <summary>
