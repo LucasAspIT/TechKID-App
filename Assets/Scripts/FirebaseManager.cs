@@ -348,11 +348,30 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
+    // ############################################################ TESTING
 
+    private IEnumerator SaveItemDatabase(string _item)
+    {
+        // Set the currently logged in user full name in the database
+        var DBTask = DBreference.Child("items").Child(User.UserId).Child("item").SetValueAsync(_item);
+
+        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
+        if (DBTask.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+        }
+        else
+        {
+            // Database item is now registered.
+        }
+    }
+
+    // ############################################################ TESTING
 
     private IEnumerator SaveFullNameDatabase(string _fullName)
     {
-        // Set the currently logged in user username in the database
+        // Set the currently logged in user full name in the database
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("fullname").SetValueAsync(_fullName);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -369,7 +388,7 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator SaveEmailDatabase(string _email)
     {
-        // Set the currently logged in user username in the database
+        // Set the currently logged in user e-mail in the database
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("email").SetValueAsync(_email);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -386,7 +405,7 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator SavePhoneDatabase(string _phone)
     {
-        // Set the currently logged in user username in the database
+        // Set the currently logged in user phone number in the database
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("phone").SetValueAsync(_phone);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -403,7 +422,7 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator SaveBirthdayDatabase(string _birthday)
     {
-        // Set the currently logged in user username in the database
+        // Set the currently logged in user birthday in the database
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("birthday").SetValueAsync(_birthday);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -420,7 +439,7 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator SaveStreetnameDatabase(string _streetname)
     {
-        // Set the currently logged in user username in the database
+        // Set the currently logged in user streetname in the database
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("streetname").SetValueAsync(_streetname);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -437,7 +456,7 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator SaveCityDatabase(string _city)
     {
-        // Set the currently logged in user username in the database
+        // Set the currently logged in user city in the database
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("city").SetValueAsync(_city);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -454,7 +473,7 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator SaveZipcodeDatabase(string _zipcode)
     {
-        // Set the currently logged in user username in the database
+        // Set the currently logged in user zipcode in the database
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("zipcode").SetValueAsync(_zipcode);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -471,7 +490,7 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator SaveRegisterDateDatabase()
     {
-        // Set the currently logged in user username in the database
+        // Set the currently logged in user register date in the database
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("registerdate").SetValueAsync(DateTime.Now.ToString("dd/MM/yyyy"));
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);

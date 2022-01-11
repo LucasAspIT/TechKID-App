@@ -18,6 +18,29 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] private Button buttonGreen;
     [SerializeField] private Button buttonRed;
 
+    public static InventorySystem instance;
+
+    public static InventorySystem Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != null)
+        {
+            Debug.Log("Instance already exists, destroying object!");
+            Destroy(this);
+        }
+    }
+
     [Serializable] public struct Item
     {
         public string Name;
@@ -52,8 +75,13 @@ public class InventorySystem : MonoBehaviour
     /// Item status button click event.
     /// </summary>
     /// <param name="itemIndex"></param>
-    void ItemClicked(int itemIndex)
+    private void ItemClicked(int itemIndex)
     {
         Debug.Log($"Item {itemIndex} was clicked.");
+    }
+
+    private void AddItem()
+    {
+
     }
 }

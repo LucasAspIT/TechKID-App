@@ -7,7 +7,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject userDashboardCanvas;
     [SerializeField] private GameObject userDashboard;
     [SerializeField] private GameObject userInventory;
+    [SerializeField] private GameObject userInventoryAddItem;
+    [SerializeField] private TMP_InputField userInventoryNameInput;
+    [SerializeField] private TMP_InputField userInventoryTypeInput;
     [SerializeField] private GameObject userLog;
+
     [SerializeField] private GameObject loginUI;
     [SerializeField] private GameObject registerUI;
 
@@ -43,13 +47,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Clears the text in the personal log, but does not save it.
-    /// </summary>
-    public void ClearPersonalLog()
-    {
-        PlayerPrefsControl.Instance.personalLog.text = "";
-    }
+    #region Login/Register screen controls
 
     /// <summary>
     /// Turn off all UI related to the login and register.
@@ -58,16 +56,6 @@ public class UIManager : MonoBehaviour
     {
         loginUI.SetActive(false);
         registerUI.SetActive(false);
-    }
-
-    /// <summary>
-    /// Turn off all UI related to the dashboard and personal log.
-    /// </summary>
-    public void ClearDashboardScreen()
-    {
-        userDashboard.SetActive(false);
-        userInventory.SetActive(false);
-        userLog.SetActive(false);
     }
 
     /// <summary>
@@ -86,6 +74,54 @@ public class UIManager : MonoBehaviour
     {
         ClearLoginScreen();
         registerUI.SetActive(true);
+    }
+
+    #endregion
+
+    #region Main application controls
+
+    /// <summary>
+    /// Clears the text in the personal log, but does not save it.
+    /// </summary>
+    public void ClearPersonalLog()
+    {
+        PlayerPrefsControl.Instance.personalLog.text = "";
+    }
+
+
+
+    /// <summary>
+    /// Toggles the inventory's "add item" menu.
+    /// </summary>
+    public void OpenAddItemToggle()
+    {
+        if (userInventoryAddItem.activeSelf)
+        {
+            userInventoryAddItem.SetActive(false);
+            ClearInventoryAddItemText();
+        }
+        else
+        {
+            userInventoryAddItem.SetActive(true);
+        }
+    }
+
+    public void ClearInventoryAddItemText()
+    {
+        userInventoryNameInput.text = "";
+        userInventoryTypeInput.text = "";
+    }
+
+
+
+    /// <summary>
+    /// Turn off all UI related to the dashboard and personal log.
+    /// </summary>
+    public void ClearDashboardScreen()
+    {
+        userDashboard.SetActive(false);
+        userInventory.SetActive(false);
+        userLog.SetActive(false);
     }
 
     /// <summary>
@@ -116,7 +152,7 @@ public class UIManager : MonoBehaviour
         userLog.SetActive(true);
     }
 
-
+    #endregion
 
     #region Enabling and disabling of canvases
 
